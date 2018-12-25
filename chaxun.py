@@ -1,31 +1,60 @@
-from bs4 import BeautifulSoup
-import urllib.request
-import re
+import requests
+
+def get_one_person(id):
+    url = 'http://sportsapp.aipao.me/MyResults.ashx?sunnyId={}&pageNo=1&type=0'.format(id)
+    response = requests.get(url)
+    return response
+
+
+def get_one_id_from_imeicode(imeicode):
+    url = 'http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool?IMEICode={}'.format(imeicode)
+    response = requests.get(url)
+    #TODO
 
 
 
-f=open('imei.txt','r')
-for imei in f.readlines():
-	imeicode.append(imei[36:42])
-f.close()
-f=open('imei2.txt','r')
-for imei in f.readlines():
-	imeicode.append(imei[36:42])
-f.close()
 
-for i in imeicode:
-	id=i
-	url='http://sportsapp.aipao.me/Manage/UserDomain_SNSP_Records.aspx/MyResutls?userId='+str(id)
-	html=urllib.request.urlopen(url).read().decode('utf-8')
+def parse_one_person(response):
+    running_recorder = response.json()
+    if running_recorder['Records'] !=[]:
+        yield{
+            'Id':running_recorder['Records'][0]['SunnyId'],
+            'Name':running_recorder['Records'][0]['NickName'],
+            'Last_time':running_recorder['Records'][0]['ResultDateFmt'],
+            'Time':running_recorder['TotalRecords']
+        }
+    else:
+        return None
+
+def save_txt(out_info):
+    with open('aipao_log.txt','a+') as f:
+        f.write(str(out_info)+'\n')
+        f.close()
+
+def print_out(result_info):
+    if result_info['Time']>=40:
+        result_info['Time']=str(result_info['Time'])+' done done done！！！'
+    print('姓名：{},\t ID：{}, 最后一次: {}, 次数: {}'\
+                  .format(result_info['Name'],result_info['Id'],result_info['Last_time'],result_info['Time']))
 
 
-	res_tr=r'<span>(.*?)</span>'
-	m_tr=re.findall(res_tr,html)
-	res_name=r'<span class="name">(.*?)</span><'
-	m_name=re.findall(res_name,html)
-	res_lastrecorder=r'<div class="list box-col"><span class="time">(.*?)<'
-	m_lastrecorder=re.findall(res_lastrecorder,html)
-	print(m_name[0],'\t',m_tr[1],'次，最后一次：'+m_lastrecorder[0])
+def read_id_from_text():
+    id = []
+    with open('imei.txt','r',encoding='gbk') as f:
+        for i in f.readlines():
+            id.append(i[36:42])
+    with open('imei2.txt','r',encoding='gbk') as f:
+        for i in f.readlines():
+            id.append(i[36:42])
+    return id
 
+def main():
+    print('loading...')
+    for i in read_id_from_text():
+        html = get_one_person(i)
+        for result_info in parse_one_person(html):
+            print_out(result_info)
+    input('waiting...')
 
-name=input('admin:')
+if __name__=='__main__':
+    main()
