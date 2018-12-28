@@ -1,16 +1,34 @@
 import requests
+from lxml.html import fromstring
+
 
 def read_imeicode_from_text():
     imeicode = []
     with open('imei.txt','r',encoding='gbk') as f:
         for i in f.readlines():
             imeicode.append(i[:32])
-    with open('imei2.txt','r',encoding='gbk') as f:
-        for i in f.readlines():
-            imeicode.append(i[:32])
+    f.close()
     return imeicode
 
-def get_one_id_from_imeicode(imeicode):
+def sex_info(Id):
+    url = 'http://sportsapp.aipao.me/Manage/UserDomain_SNSP_Records.aspx/MyResutls?userId={}'.format(Id)
+    response = requests.get(url)
+    html = fromstring(response.text)
+    user_info = html.cssselect('div .user-info *')
+    user_info2 = html.cssselect('div .running-info span')
+
+    Name = str(user_info[0].text_content())
+    Sex = str(user_info[2].text_content())
+    #XueHao = str(user_info[3].text_content())
+    ChengPao = user_info2[1].text_content()
+    #Total_Time = user_info2[2].text_content()
+    sex_info = {Id:[Name,Sex,ChengPao]}
+
+    return sex_info
+
+
+
+def get_id_from_imeicode(imeicode):
     url = 'http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool?IMEICode={}'.format(imeicode)
     response = requests.get(url)
     response_dict = response.json()
@@ -25,7 +43,7 @@ def get_info_from_id(id):
     running_recorder = response.json()
     if running_recorder['Records'] != []:
         info = {
-            'Name':running_recorder['Records'][0]['NickName'],
+            #'Name':running_recorder['Records'][0]['NickName'],
             'Last_time':running_recorder['Records'][0]['ResultDateFmt'],
             'Time':running_recorder['TotalRecords']
         }
@@ -47,20 +65,29 @@ def print_out(result_info):
 
 
 def main():
-    imei_list = read_imeicode_from_text()
-    all_info ={}
-    for i in imei_list:
-        all_info['Imeicode'] = i
-        #all_info['Imeicode'] = input('Please make input your imeicode :')
-        all_info['Id'] = get_one_id_from_imeicode(all_info['Imeicode'])#return id list
-        info = get_info_from_id(all_info['Id'])
-        if info != None:
-            all_info_result = all_info.copy()
-            all_info_result.update(info)
-            save_info(all_info_result)
+    imeicode_list = read_imeicode_from_text()
+
+    for imeicode in imeicode_list:
+        Id = get_id_from_imeicode(imeicode)
+        info = sex_info(Id)
+
+        if Id != '500000':
+            info[Id].append('正常')
         else:
-            print('Imeicode: {} 已失效!'.format(all_info['Imeicode']))
-        #save_info(all_info)
+            info[Id].append(imeicode+' 已失效')
+            continue
+
+        info[Id].append(imeicode)
+        info2 = get_info_from_id(Id)
+        info[Id].append(info2['Last_time'])
+        info[Id].append(str(info2['Time']))
+
+        print(info)
+
+
+    #all_info['Imeicode'] = input('Please make input your imeicode :')
+    #save_info(all_info)
+
 
 
 
