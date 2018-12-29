@@ -1,10 +1,12 @@
-import requests
+import requests,json
 from lxml.html import fromstring
-
 
 def read_imeicode_from_text():
     imeicode = []
     with open('imei.txt','r',encoding='gbk') as f:
+        for i in f.readlines():
+            imeicode.append(i[:32])
+    with open('imei2.txt','r',encoding='gbk') as f:
         for i in f.readlines():
             imeicode.append(i[:32])
     f.close()
@@ -75,6 +77,7 @@ def main():
             info[Id].append('正常')
         else:
             info[Id].append(imeicode+' 已失效')
+            print(info)
             continue
 
         info[Id].append(imeicode)
@@ -82,7 +85,7 @@ def main():
         info[Id].append(info2['Last_time'])
         info[Id].append(str(info2['Time']))
 
-        print(info)
+        print(json.dumps(info,ensure_ascii = False))
 
 
     #all_info['Imeicode'] = input('Please make input your imeicode :')
