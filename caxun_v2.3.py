@@ -5,10 +5,10 @@ def read_imeicode_from_text():
     imeicode = []
     with open('imei.txt','r',encoding='gbk') as f:
         for i in f.readlines():
-            imeicode.append(i[:32])
+            imeicode.append(i)
     with open('imei2.txt','r',encoding='gbk') as f:
         for i in f.readlines():
-            imeicode.append(i[:32])
+            imeicode.append(i)
     f.close()
     return imeicode
 
@@ -54,8 +54,8 @@ def get_info_from_id(id):
         return None
 
 def save_info(info):
-    with open('Info.txt','a+') as f:
-        f.write(str(info)+'\n')
+    with open('All_info.txt','a+') as f:
+        f.write('{}----{}{}{}\n'.format(info[4],info[5],info[0],info[1]))
         f.close()
 
 def print_out(result_info):
@@ -64,28 +64,35 @@ def print_out(result_info):
     print('{}\t ID：{} 最后一次: {} 次数: {}'\
                   .format(result_info['Name'],result_info['Id'],result_info['Last_time'],result_info['Time']))
 
-
+def shixiao(imeicode):
+        imeicodes = read_imeicode_from_text()
+        for i in imeicodes:
+            if i[:32] == imeicode:
+                print(i[36:].strip('\n')+'已失效！')
 
 def main():
     imeicode_list = read_imeicode_from_text()
-
     for imeicode in imeicode_list:
+        imeicode = imeicode[:32]
         Id = get_id_from_imeicode(imeicode)
         info = sex_info(Id)
 
         if Id != '500000':
             info[Id].append('正常')
         else:
-            info[Id].append(imeicode+' 已失效')
-            print(info)
+            shixiao(imeicode)
+            save_info(info[Id])
             continue
 
         info[Id].append(imeicode)
+        info[Id].append(Id)
         info2 = get_info_from_id(Id)
         info[Id].append(info2['Last_time'])
         info[Id].append(str(info2['Time']))
 
-        print(json.dumps(info,ensure_ascii = False))
+        save_info(info[Id])
+
+        print(json.dumps(info,ensure_ascii= False))
 
 
     #all_info['Imeicode'] = input('Please make input your imeicode :')
