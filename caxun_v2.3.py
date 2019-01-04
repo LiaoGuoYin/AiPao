@@ -1,5 +1,6 @@
 import requests,json
 from lxml.html import fromstring
+from pymongo import MongoClient
 
 
 def sex_info(Id):
@@ -40,10 +41,16 @@ def save_info(info):
 
 def main():
     f = open('all_info.txt','r')
+    client = MongoClient(host = 'localhost',port = 27017)
+    db=client.test
+    collection = db.info
     for i in f.readlines():
         info = sex_info(i[:6])
         info['imeicode'] = i[10:].strip()
         print(info)
+        result = collection.insert_one(info)
+
+    print(result)
         #print(info[].append(i[:10]))
 
     #imeicode_list = read_imeicode_from_text()
