@@ -50,7 +50,6 @@ def main():
         print(info)
         result = collection.insert_one(info)
 
-    print(result)
         #print(info[].append(i[:10]))
 
     #imeicode_list = read_imeicode_from_text()

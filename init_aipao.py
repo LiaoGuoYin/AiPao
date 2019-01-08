@@ -15,7 +15,7 @@ with open('imei.txt','r') as f, open('imei2.txt','r',encoding='gbk') as f2:
         if response1['Success'] == True:
             imei_id.append('{}----{}'.format(response1['Data']['UserId'],imeicode))
         else:
-            print('{} 失效！'.format(imeicode))
+            print('{} 失效！'.format(i[32:].strip()))
     f.close()
 
 with open('all_info.txt','w') as f:
