@@ -5,7 +5,7 @@ import requests
 imeicode = ''
 url = 'http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool?IMEICode='.format(imeicode)
 
-f0 = open('info.txt','w+')
+f0 = open('success_imeicode.txt','w+')
 
 with open('imei2.txt','r',encoding='gbk') as f:
     imeicodes = f.readlines()
@@ -16,9 +16,12 @@ with open('imei2.txt','r',encoding='gbk') as f:
         if rsp['Success'] == True:
             f0.write('{}----{}\n'.format(rsp['Data']['IMEICode'],rsp['Data']['UserId']))
             count=count+1
+
             print(imeicode.strip() + ' \tdone')
         else:
             print(imeicode.strip()+' \t初始化失败！!')
     print('{} 条记录，{} 条 init Success！'.format(len(imeicodes),count))
+
 f0.close()
 f.close()
+

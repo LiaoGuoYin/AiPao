@@ -1,9 +1,11 @@
-import requests,json
+import requests
 from lxml.html import fromstring
 from pymongo import MongoClient
 
 
-def sex_info(Id):
+def get_info(line):
+    Id = line[36:43]
+    Imeicode = line[:32]
     url = 'http://sportsapp.aipao.me/Manage/UserDomain_SNSP_Records.aspx/MyResutls?userId={}'.format(Id)
     response = requests.get(url)
     html = fromstring(response.text)
@@ -15,8 +17,10 @@ def sex_info(Id):
     #XueHao = str(user_info[3].text_content())
     ChengPao = user_info2[1].text_content()
     Total_Time = user_info2[2].text_content()
-    sex_info = {Id:[Name,Sex,ChengPao,Total_Time]}
-    return sex_info
+    LastTime = get_info_from_id(Id)['Last_time']
+    Status = get_shixiao(Imeicode)
+    info = {Id:[Name,Sex,ChengPao,Total_Time,LastTime,Status]}
+    return info
 
 
 def get_info_from_id(id):
@@ -33,22 +37,30 @@ def get_info_from_id(id):
     else:
         return None
 
+def get_shixiao(imeicode):
+    url = 'http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool?IMEICode='.format(imeicode)
+    rsp = requests.get(url+imeicode)
+    flags = ''
+    if rsp.json()['Success'] == True:
+        status = '有效'
+    else:
+        status = '失效！！'
+    return status
+
 def save_info(info):
-    with open('All_info.txt','a+') as f:
+    with open('result.txt','a+') as f:
         f.write('{}----{}{}{}\n'.format(info[4],info[5],info[0],info[1]))
         f.close()
 
 
 def main():
-    f = open('all_info.txt','r')
-    client = MongoClient(host = 'localhost',port = 27017)
-    db=client.test
-    collection = db.info
+    f = open('success_imeicode.txt','r')
     for i in f.readlines():
-        info = sex_info(i[:6])
-        info['imeicode'] = i[10:].strip()
-        print(info)
-        result = collection.insert_one(info)
+        imeicode = i[:32]
+        id = i[36:43].strip()
+        line = i.strip()
+        info = get_info(line)
+        print('正在查询 imeicode ={} 的信息..\t{}'.format(imeicode,info[id]))
 
         #print(info[].append(i[:10]))
 
