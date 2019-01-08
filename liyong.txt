@@ -1,25 +1,21 @@
-this is a test line
-Ê§°Ü¼ÇÂ¼²éÑ¯
+å†…éƒ¨æ‰€æœ‰è®°å½•(åŒ…æ‹¬å¤±è´¥)
 http://sportsapp.aipao.me/MyResults.ashx?sunnyId=396962&schoolId=lntu&pageNo=1&type=1
 
 
-IMEICode»ñÈ¡
-http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool?IMEICode=c09414bdaeb74f17b3e963654f95dfd2
-
-·¢ËÍ¿ªÊ¼
-http://client3.aipao.me/api/543d50e94f5f408882b134ff86abe9b3/QM_Runs/SRS?S1=40.62825&S2=120.79107&S3=3000
-
-
-·¢ËÍ½áÊø
-http://client3.aipao.me/api/ae03180bdfe243a6be2824785d14f500/QM_Runs/ES?S1=7a46275845524e3385183cba5be36500&S4=owow&S5=kbbk&S6=A0A2A1A3A0&S7=1&S8=bozkhjwnui&S9=b HTTP/1.1
-
-
-
-×Ü¼ÇÂ¼²éÑ¯
+å¤–éƒ¨æˆç»©æŸ¥è¯¢æ¥å£
 http://sportsapp.aipao.me/Manage/UserDomain_SNSP_Records.aspx/MyResutls?userId=396970
 
 
+è·å–tokenã€id
+http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool?IMEICode=c09414bdaeb74f17b3e963654f95dfd2
 
+
+å¼€å§‹è·‘æ­¥ï¼Œè¿”å›A0A2A1A4
+http://client3.aipao.me/api/543d50e94f5f408882b134ff86abe9b3/QM_Runs/SRS?S1=40.62825&S2=120.79107&S3=3000
+
+
+ä¸Šä¼ æˆç»©
+http://client3.aipao.me/api/ae03180bdfe243a6be2824785d14f500/QM_Runs/ES?S1=7a46275845524e3385183cba5be36500&S4=owow&S5=kbbk&S6=A0A2A1A3A0&S7=1&S8=bozkhjwnui&S9=b
 
 
 
@@ -77,9 +73,9 @@ Date: Sun, 17 Jun 2018 08:07:59 GMT
   "Data": {
     "User": {
       "UserID": 396951,
-      "NickName": "ÓàÈáÂº",
+      "NickName": "Ã“Ã ÃˆÃ¡Ã‚Âº",
       "UserName": "1710030126",
-      "Sex": "Å®",
+      "Sex": "Ã…Â®",
       "Province": null,
       "City": null,
       "Country": null,
@@ -105,9 +101,9 @@ Date: Sun, 17 Jun 2018 08:07:59 GMT
       "Days_Start_Date": "2015-01-01 00:00:00"
     },
     "SchoolRun": {
-      "Sex": "Å®",
+      "Sex": "Ã…Â®",
       "SchoolId": "lntu",
-      "SchoolName": "ÁÉÄş¹¤³Ì¼¼Êõ´óÑ§",
+      "SchoolName": "ÃÃ‰Ã„Ã¾Â¹Â¤Â³ÃŒÂ¼Â¼ÃŠÃµÂ´Ã³Ã‘Â§",
       "MinSpeed": 1.6,
       "MaxSpeed": 4.0,
       "Lengths": 2500,
@@ -179,7 +175,7 @@ Content-Length: 16329
 <meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link href="/Utility/ChannelRunNew/css/myResult.css" rel="stylesheet" type="text/css">
-<title>³É¼¨²éÑ¯</title>
+<title>Â³Ã‰Â¼Â¨Â²Ã©Ã‘Â¯</title>
 <style type="text/css">
  
 </style> 
@@ -190,7 +186,7 @@ Content-Length: 16329
 <header class="hdContWrap">
   <div class="layout-box hd">
       <div class=""></div>
-      <div class="hdTitle">³É¼¨²éÑ¯</div>
+      <div class="hdTitle">Â³Ã‰Â¼Â¨Â²Ã©Ã‘Â¯</div>
       <input type="hidden" id="sunnyId" value='396951'/>
       <input type="hidden" id="schoolId" value='lntu'/>
       <input type="hidden" id="type" value="0" />
@@ -200,33 +196,33 @@ Content-Length: 16329
       <input type="hidden" id="noResultPageCount" value="5" />
   </div>
   <div class="runShow-mod layout-box">
-      <!--×ó±ß-->
+      <!--Ã—Ã³Â±ÃŸ-->
       <div class="running-info mod01">
           <span class="chenpao-img"></span>
           <span>0</span>
-          <p class="num">³¿ÅÜ´ÎÊı</p>
+          <p class="num">Â³Â¿Ã…ÃœÂ´ÃÃŠÃ½</p>
       </div>
-      <!--¸öÈËÏÔÊ¾-->
+      <!--Â¸Ã¶ÃˆÃ‹ÃÃ”ÃŠÂ¾-->
       <div class="box-col box-center">
           <div class="media-main">
               <div class="media-img"><img src="/Utility/ChannelRunNew/img/person_img_u10.png"/></div>
               <div class="user-info">
-                  <span class="name">ÓàÈáÂº</span><i class="line-gradients"></i><span class="Gender">Å®</span>
+                  <span class="name">Ã“Ã ÃˆÃ¡Ã‚Âº</span><i class="line-gradients"></i><span class="Gender">Ã…Â®</span>
                   <div class="numshow">1710030126</div>
               </div>
           </div>
       </div>
-      <!--ÓÒ±ß-->
+      <!--Ã“Ã’Â±ÃŸ-->
       <div class="running-info mod01">
           <span>34</span>
           <span class="changpao-img"></span>
-          <p class="num">³¤ÅÜ´ÎÊı(º¬³¿ÅÜ)</p>
+          <p class="num">Â³Â¤Ã…ÃœÂ´ÃÃŠÃ½(ÂºÂ¬Â³Â¿Ã…Ãœ)</p>
       </div>
   </div>
 
-    <!--µ¼º½-->
+    <!--ÂµÂ¼ÂºÂ½-->
     <div class="home-sub-nav layout-box">
-        <a class="item box-col">ÁÉÄş¹¤³Ì¼¼Êõ´óÑ§</a>
+        <a class="item box-col">ÃÃ‰Ã„Ã¾Â¹Â¤Â³ÃŒÂ¼Â¼ÃŠÃµÂ´Ã³Ã‘Â§</a>
         <a class="item box-col"></a>
         <a class="item box-col"></a>
         <a class="item box-col"></a>
@@ -238,155 +234,155 @@ Content-Length: 16329
     <ul class="tab-mod"> 
         <li class="">
             <input type="radio" name="tabs" id="tab2" checked="">
-            <label for="tab2" id="lbltab2">ÎŞĞ§¼ÇÂ¼</label>
+            <label for="tab2" id="lbltab2">ÃÃÃÂ§Â¼Ã‡Ã‚Â¼</label>
             <div class="tab-content" id="tab-content2">
                  <div id="scroller2" name="scroller2"></div>
             </div>
         </li>
         <li class="">
             <input type="radio" name="tabs" id="tab3" checked="">
-            <label for="tab3" id="lbltab3">ÓĞĞ§¼ÇÂ¼</label>
+            <label for="tab3" id="lbltab3">Ã“ÃÃÂ§Â¼Ã‡Ã‚Â¼</label>
             <div class="tab-content" id="tab-content3">
             <div id="scroller" name="scroller3">
                 
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-15</span><span>2502.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>12·Ö21Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>3.38</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>12Â·Ã–21ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>3.38</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-14</span><span>2503.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>13·Ö57Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.99</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>13Â·Ã–57ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.99</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-13</span><span>2502.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>13·Ö3Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>3.20</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>13Â·Ã–3ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>3.20</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-12</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>11·Ö59Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>3.48</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>11Â·Ã–59ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>3.48</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-11</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>12·Ö58Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>3.21</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>12Â·Ã–58ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>3.21</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-09</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>23·Ö47Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>1.75</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>23Â·Ã–47ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>1.75</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-08</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>23·Ö6Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>1.80</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>23Â·Ã–6ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>1.80</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-04</span><span>2503.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>20·Ö59Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>1.99</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>20Â·Ã–59ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>1.99</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-06-03</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>22·Ö11Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>1.88</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>22Â·Ã–11ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>1.88</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-30</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>19·Ö22Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.15</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>19Â·Ã–22ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.15</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-29</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>18·Ö31Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.25</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>18Â·Ã–31ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.25</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-27</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>17·Ö26Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.39</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>17Â·Ã–26ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.39</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-24</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>20·Ö46Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.01</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>20Â·Ã–46ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.01</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-23</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>19·Ö19Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.16</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>19Â·Ã–19ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.16</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-21</span><span>2503.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>17·Ö35Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.37</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>17Â·Ã–35ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.37</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-20</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>19·Ö56Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.09</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>19Â·Ã–56ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.09</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-18</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>17·Ö50Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.34</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>17Â·Ã–50ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.34</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-17</span><span>2502.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>25·Ö17Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>1.65</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>25Â·Ã–17ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>1.65</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-14</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>20·Ö41Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>2.01</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>20Â·Ã–41ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>2.01</span></div>
                         </div>
                     
                         <div class="layout-box">
                             <div class="list box-col"><span class="time">2018-05-06</span><span>2501.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓĞĞ§Â·³Ì</span><span>2500.0m</span></div>
-                            <div class="list box-col"><span class="time">ÓÃÊ±</span><span>21·Ö56Ãë</span></div>
-                            <div class="list box-col"><span class="time">ËÙ¶È</span><span>1.90</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃÃÂ§Ã‚Â·Â³ÃŒ</span><span>2500.0m</span></div>
+                            <div class="list box-col"><span class="time">Ã“ÃƒÃŠÂ±</span><span>21Â·Ã–56ÃƒÃ«</span></div>
+                            <div class="list box-col"><span class="time">Ã‹Ã™Â¶Ãˆ</span><span>1.90</span></div>
                         </div>
                      
                  </div>

@@ -66,6 +66,7 @@ sign = MD5(token + nonce + timespan + userId).upper()  # sign为大写
 
 header = {'nonce': nonce, 'timespan': timespan,
           'sign': sign, 'version': Version, 'Accept': '*/*', 'User-Agent': Agent, 'Accept-Language': 'zh-CN, en-US', 'Accept-Encoding': 'gzip,deflate', 'Connection': 'Keep-Alive'}
+
 # Start Running
 SRSurl = API_ROOT + '/' + token + '/QM_Runs/SRS?S1=40.62828&S2=120.79108&S3=3000'
 SRSres = requests.get(SRSurl, headers=header, data={})

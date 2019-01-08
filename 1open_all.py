@@ -1,4 +1,3 @@
-
 import win32api
 
 imeicode = []

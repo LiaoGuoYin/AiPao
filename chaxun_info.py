@@ -1,6 +1,5 @@
 import requests
 from lxml.html import fromstring
-from pymongo import MongoClient
 
 
 def get_info(line):
@@ -44,7 +43,7 @@ def get_shixiao(imeicode):
     if rsp.json()['Success'] == True:
         status = '有效'
     else:
-        status = '失效！！'
+        status = '失效!!!!!!!!!!'
     return status
 
 def save_info(info):
@@ -54,14 +53,14 @@ def save_info(info):
 
 
 def main():
-    f = open('success_imeicode.txt','r')
+    f = open('success_imeicode.txt','r',encoding='utf-8')
     for i in f.readlines():
         imeicode = i[:32]
         id = i[36:43].strip()
         line = i.strip()
         info = get_info(line)
-        print('正在查询 imeicode ={} 的信息..\t{}'.format(imeicode,info[id]))
-
+        print('查询 imeicode ={} 的信息..\t{}'.format(imeicode,info[id]))
+    input('')
         #print(info[].append(i[:10]))
 
     #imeicode_list = read_imeicode_from_text()
