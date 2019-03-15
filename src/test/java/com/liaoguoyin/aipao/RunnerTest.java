@@ -13,7 +13,7 @@ public class RunnerTest {
         clinet.imeiLogin(scanner.nextLine());//4cda88bcc04a4b8ab5fe9cfe39bec6ef
         clinet.getBasicInfo();
         clinet.running();
-        //clinet.uploadRecord();
+        clinet.uploadRecord();
 
     }
 }
