@@ -1,6 +1,6 @@
-# 阳光体育跑跑跑
+# 阳光体育paopaopao
 
-一个几秒钟就能躺着跑完 `阳关体育` 脚本（强行JAVA脚本）
+一个几秒钟就能躺完的 `阳关体育` 脚本（强行JAVA脚本）
 
 ## 使用方法    
 
@@ -16,11 +16,11 @@
 
      (其他IDE请自行导入 `Retrofit2` 等依赖库)
   
-#### 推荐俩能用的抓包软件:
+#### 推荐俩抓包软件:
      IOS: [Stream](https://itunes.apple.com/cn/app/stream/id1312141691?mt=8&ct=appshare-cn) Android: [Packet Capture](https://play.google.com/store/apps/details?id=app.greyshirts.sslcapture)
 
 ## TODO
- - [ ] 判断性别, 随机生成对应的路程和时间
+ - [x] 判断性别, 随机生成对应的路程和时间
  - [ ] 多线程异步式多人批量跑
  - [ ] 添加 headers 中的 `auth` 和 `sign` 字段, 提升鲁棒性
  

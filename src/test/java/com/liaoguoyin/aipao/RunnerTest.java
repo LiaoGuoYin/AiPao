@@ -15,5 +15,7 @@ public class RunnerTest {
         clinet.running();
         clinet.uploadRecord();
 
+        System.out.println("按任意键退出...");
+
     }
 }

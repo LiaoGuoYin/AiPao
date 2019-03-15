@@ -17,6 +17,9 @@ public class AipaoClinet {
     private ApiService apiService;
     private String token;
     private String runid;
+    private String gender;
+    private int distance;
+    private int time;
 
     public AipaoClinet() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -57,28 +60,46 @@ public class AipaoClinet {
 
         assert info != null;
         System.out.print("正在获取个人信息: \t");
-        System.out.println(info.getData().getUser().getNickName() + info.getData().getUser().getSex());
+        gender = info.getData().getUser().getSex();
+        System.out.println(info.getData().getUser().getNickName() + gender);
     }
 
     public void running() throws IOException {
-        Call<runningEntity> running = apiService.startRunning(token);
+        Map<String, String> locationmap = new HashMap<>();
+        locationmap.put("S1", "40.62825");
+        locationmap.put("S2", "120.79107");
+
+        if (gender.equals("男")) {
+            locationmap.put("S3", "3000");
+            distance = 3000 + (int) (Math.random() * 5);
+            time = distance / 3;
+        } else if (gender.equals("女")) {
+            locationmap.put("S3", "2500");
+            distance = 3000 + (int) (Math.random() * 5);
+            time = distance / 3;
+        }
+
+        Call<runningEntity> running = apiService.startRunning(token, locationmap);
 
         System.out.print("开始跑步 runid: \t");
         runningEntity runningEntity = running.execute().body();
         assert runningEntity != null;
         runid = runningEntity.getData().getRunId();
         System.out.println(runningEntity.getData().getRunId());
+        System.out.println("性别: " + gender);
+        System.out.println("路程: (m)" + distance);
+        System.out.println("时间: (s)" + time);
     }
 
     public void uploadRecord() throws IOException {
         Map<String, String> record = new HashMap<>();
         record.put("S1", runid);// 本次跑步记录的id
-        record.put("S4", encrypt(1096));// 跑步时间 s
-        record.put("S5", encrypt(3003));// 跑步距离 m
+        record.put("S4", encrypt(time));// 跑步时间 s
+        record.put("S5", encrypt(distance));// 跑步距离 m
         record.put("S6", "");
         record.put("S7", "1");
         record.put("S8", "czplgyznba");// 加密原字段
-        record.put("S9", encrypt(2201));// 跑步步数
+        record.put("S9", encrypt(2205));// 跑步步数
 
         System.out.print("正在上传跑步记录: \t");
         Call<uploadEntity> uploadRecord = apiService.uploadRecord(token, record);
