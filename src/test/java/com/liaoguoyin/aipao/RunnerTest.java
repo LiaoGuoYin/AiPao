@@ -14,7 +14,7 @@ public class RunnerTest {
         clinet.imeiLogin(scanner.nextLine());//4cda88bcc04a4b8ab5fe9cfe39bec6ef
         clinet.getBasicInfo();
         clinet.running();
-        clinet.uploadRecord();
+        //clinet.uploadRecord();
 
         System.out.println("Success, 点击查看所有记录: http://sportsapp.aipao.me/Manage/UserDomain_SNSP_Records.aspx/MyResutls?userId=" + clinet.UserId);
         System.out.println("按任意键退出...");

@@ -21,10 +21,11 @@
 
 ## TODO
    - [x] 判断性别, 随机生成对应的路程和时间
-   - [ ] 每操作一步，返回一定的信息
+   - [x] 每操作一步，返回一定的信息
    - [ ] 异步式批量跑
    - [ ] 添加 headers 中的 `auth` 和 `sign` 字段
    - [ ] 从本地读取保存 `IMEICode` 
+   - [ ] 完整的错误提示
  
 ## 其他
      **本项目基于 HTTP框架: [Retrofit2](https://square.github.io/retrofit/)**  

@@ -1,6 +1,8 @@
 package com.liaoguoyin.aipao.api.Entity;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class runningEntity {
 
@@ -17,10 +19,10 @@ public class runningEntity {
         Map<String, Object> map = new HashMap<>();
         map.put("本次开始跑步时间", this.Data.StartTime);
         map.put("RunId", this.Data.RunId);
-//        map.put("跑步点1", this.Data.getPoints().toArray()[0]);
-//        map.put("跑步点2", this.Data.getPoints().toArray()[1]);
-//        map.put("跑步点3", this.Data.getPoints().get(2));
-//        map.put("跑步点4", this.Data.getPoints().get(3));
+        List<DataBean.PointsBean> points = this.getData().getPoints();
+        for (int i = 0; i < points.size(); i++) {
+            map.put("跑步点" + i, "(" + points.get(i).Lng + "," + points.get(i).Lat + ")");
+        }
         return map.toString();
     }
 
@@ -114,7 +116,7 @@ public class runningEntity {
             this.Major = Major;
         }
 
-        public List<PointsBean> getPoints() {
+        List<PointsBean> getPoints() {
             return Points;
         }
 

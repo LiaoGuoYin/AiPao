@@ -9,6 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,7 +75,6 @@ public class AipaoClinet {
         System.out.println("获取本次跑步信息: " + runningEntity.toString());
         System.out.print("开始跑步, 取得RunId: \t");
         runid = runningEntity.getData().getRunId();
-        System.out.println(runningEntity.getData().getRunId());
         System.out.print("本次路程: (米)" + distance);
         System.out.println("\t用时: (秒)" + time);
     }
