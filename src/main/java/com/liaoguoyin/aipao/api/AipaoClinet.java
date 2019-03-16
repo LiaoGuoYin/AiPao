@@ -22,6 +22,7 @@ public class AipaoClinet {
     private String gender;
     private int distance;
     private int time;
+    public int UserId;
 
     public AipaoClinet() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -40,6 +41,7 @@ public class AipaoClinet {
         LoginEntity loginEntity = dataEntityCall.execute().body();
         assert loginEntity != null;
         token = loginEntity.getData().getToken();
+        UserId = loginEntity.getData().getUserId();
         System.out.println("Login: \t" + loginEntity.toString());
     }
 
