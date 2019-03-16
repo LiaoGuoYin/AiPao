@@ -1,6 +1,9 @@
 package com.liaoguoyin.aipao.api.Entity;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class InfoEntity {
 
     /**
@@ -28,14 +31,19 @@ public class InfoEntity {
     }
 
     /**
-     * 输出部分有用信息
+     * @return 返回一些有价值的信息
      */
     @Override
     public String toString() {
-        String s = "Name: " + this.getData().getUser().UserName + "\n"
-                + "UserId: " + this.getData().getUser().getUserID() + "\n"
-                + "SchoolName: " + this.getData().getSchoolRun().SchoolName;
-        return s;
+        Map<String, Object> map = new HashMap<>();
+        map.put("姓名", this.getData().User.NickName);
+        map.put("学校", this.getData().SchoolRun.SchoolName);
+        map.put("学号", this.getData().User.UserName);
+        map.put("性别", this.getData().SchoolRun.Sex);
+        map.put("最小速度", this.getData().SchoolRun.MinSpeed);
+        map.put("最大速度", this.getData().SchoolRun.MaxSpeed);
+        map.put("跑步路程", this.getData().SchoolRun.Lengths);
+        return map.toString();
     }
 
     public static class DataBean {

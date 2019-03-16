@@ -1,16 +1,28 @@
 package com.liaoguoyin.aipao.api.Entity;
 
-import java.util.List;
+import java.util.*;
 
 public class runningEntity {
+
+    private boolean Success;
+    private DataBean Data;
 
     /**
      * Success : true
      * Data : {"StartTime":"2019-03-15 10:25:59","RunId":"ecab195139c146ecb4506d5840441cdc","FUserId":0,"FieldId":289,"Routes":"A0A3A1A2A0","LifeValue":0,"Powers":0,"LenValue":0,"Points":[{"PointNo":"A0","Lat":40.628369,"Lng":120.791004,"Minor":1},{"PointNo":"A3","Lat":40.627007,"Lng":120.791651,"Minor":4},{"PointNo":"A1","Lat":40.628355,"Lng":120.791669,"Minor":2},{"PointNo":"A2","Lat":40.627028,"Lng":120.790986,"Minor":3},{"PointNo":"A0","Lat":40.628369,"Lng":120.791004,"Minor":1}],"FiledName":"","Area":"","SenseType":"0","ImgUrl":"","Major":0}
      */
 
-    private boolean Success;
-    private DataBean Data;
+    @Override
+    public String toString() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("本次开始跑步时间", this.Data.StartTime);
+        map.put("RunId", this.Data.RunId);
+//        map.put("跑步点1", this.Data.getPoints().toArray()[0]);
+//        map.put("跑步点2", this.Data.getPoints().toArray()[1]);
+//        map.put("跑步点3", this.Data.getPoints().get(2));
+//        map.put("跑步点4", this.Data.getPoints().get(3));
+        return map.toString();
+    }
 
     public boolean isSuccess() {
         return Success;

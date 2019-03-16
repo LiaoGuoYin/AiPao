@@ -11,7 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import static com.liaoguoyin.aipao.api.utils.encrypt;
 import static com.liaoguoyin.aipao.api.utils.randomUtils;
@@ -37,19 +36,19 @@ public class AipaoClinet {
     public void imeiLogin(String imeicode) throws IOException {
         System.out.println("IMEICode: \t\t" + imeicode);
         Call<LoginEntity> dataEntityCall = apiService.imeilogin(imeicode);
-        token = Objects.requireNonNull(dataEntityCall.execute().body()).getData().getToken();
-        System.out.println("正在获取 token: \t" + token);
+
+        LoginEntity loginEntity = dataEntityCall.execute().body();
+        assert loginEntity != null;
+        token = loginEntity.getData().getToken();
+        System.out.println("Login: \t" + loginEntity.toString());
     }
 
     public void getBasicInfo() throws IOException {
         Call<InfoEntity> infoEntityCall = apiService.getinfo(token);
-        InfoEntity info = infoEntityCall.execute().body();
+        InfoEntity infoEntity = infoEntityCall.execute().body();
 
-        assert info != null;
-        System.out.print("正在获取个人信息: \t");
-        System.out.println(info.toString());
-        gender = info.getData().getUser().getSex();
-        System.out.println(info.getData().getUser().getNickName() + gender);
+        System.out.println("正在获取个人信息: \t" + infoEntity.toString());
+        gender = infoEntity.getData().getUser().getSex();
     }
 
     public void running() throws IOException {
@@ -69,14 +68,13 @@ public class AipaoClinet {
 
         Call<runningEntity> running = apiService.startRunning(token, locationmap);
 
-        System.out.print("开始跑步 runid: \t");
         runningEntity runningEntity = running.execute().body();
-        assert runningEntity != null;
+        System.out.println("获取本次跑步信息: " + runningEntity.toString());
+        System.out.print("开始跑步, 取得RunId: \t");
         runid = runningEntity.getData().getRunId();
         System.out.println(runningEntity.getData().getRunId());
-        System.out.println("性别: " + gender);
-        System.out.println("路程: (m)" + distance);
-        System.out.println("时间: (s)" + time);
+        System.out.print("本次路程: (米)" + distance);
+        System.out.println("\t用时: (秒)" + time);
     }
 
     public void uploadRecord() throws IOException {
@@ -91,7 +89,7 @@ public class AipaoClinet {
 
         System.out.print("正在上传跑步记录: \t");
         Call<uploadEntity> uploadRecord = apiService.uploadRecord(token, record);
-        System.out.println(Objects.requireNonNull(uploadRecord.execute().body()).getData());
+        System.out.println(uploadRecord.execute().body().getData());
     }
 
 }

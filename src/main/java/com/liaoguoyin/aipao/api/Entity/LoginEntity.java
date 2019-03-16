@@ -1,5 +1,8 @@
 package com.liaoguoyin.aipao.api.Entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginEntity {
     /**
      * Success : true
@@ -23,6 +26,20 @@ public class LoginEntity {
 
     public void setData(DataBean Data) {
         this.Data = Data;
+    }
+
+    /**
+     * Todo 似乎这里也可以用反射
+     *
+     * @return 返回一些有价值的信息
+     */
+    @Override
+    public String toString() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("Token", this.getData().Token);
+        map.put("UserId", this.getData().UserId);
+        map.put("Login状态", this.Success);
+        return map.toString();
     }
 
     public static class DataBean {
