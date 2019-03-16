@@ -20,10 +20,11 @@
      IOS: [Stream](https://itunes.apple.com/cn/app/stream/id1312141691?mt=8&ct=appshare-cn) Android: [Packet Capture](https://play.google.com/store/apps/details?id=app.greyshirts.sslcapture)
 
 ## TODO
- - [x] 判断性别, 随机生成对应的路程和时间
- - [ ] 多线程异步式多人批量跑
- - [ ] 添加 headers 中的 `auth` 和 `sign` 字段, 提升鲁棒性
- 
+   - [x] 判断性别, 随机生成对应的路程和时间
+   - [ ] 每操作一步，返回一定的信息
+   - [ ] 异步式批量跑
+   - [ ] 添加 headers 中的 `auth` 和 `sign` 字段
+   - [ ] 从本地读取保存 `IMEICode` 
  
 ## 其他
      **本项目基于 HTTP框架: [Retrofit2](https://square.github.io/retrofit/)**  
