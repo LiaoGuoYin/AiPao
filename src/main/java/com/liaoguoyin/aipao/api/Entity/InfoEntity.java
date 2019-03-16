@@ -27,6 +27,17 @@ public class InfoEntity {
         this.Data = Data;
     }
 
+    /**
+     * 输出部分有用信息
+     */
+    @Override
+    public String toString() {
+        String s = "Name: " + this.getData().getUser().UserName + "\n"
+                + "UserId: " + this.getData().getUser().getUserID() + "\n"
+                + "SchoolName: " + this.getData().getSchoolRun().SchoolName;
+        return s;
+    }
+
     public static class DataBean {
         /**
          * User : {"UserID":396973,"NickName":"LGY","UserName":"1710030205","Sex":"男","Province":null,"City":null,"Country":null,"HeadImgUrl":"","Mobile":null,"MobileVerifyCode":null,"IsMoblileVerify":"0","Weights":0,"BMI":0,"Heights":0,"Birthday":"0001-01-01 00:00:00","OldYears":0,"IsInfoOk":"0","WXNickName":null,"WXSex":null,"IsStationOpen":"0","IsBgMusic":"1","IsReciveMsg":"1","IsSchoolMode":"1","Level_Lengh":0,"Level_Lengh_Date":"2015-01-01 00:00:00","Days_Start":0,"Days_Start_Date":"2015-01-01 00:00:00"}
@@ -189,9 +200,4 @@ public class InfoEntity {
             }
         }
     }
-
-    /**
-     * 输出部分有用信息
-     * TODO
-     */
 }

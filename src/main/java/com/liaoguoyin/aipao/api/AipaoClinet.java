@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.liaoguoyin.aipao.api.utils.encrypt;
+import static com.liaoguoyin.aipao.api.utils.randomUtils;
+
 public class AipaoClinet {
     private ApiService apiService;
     private String token;
@@ -30,22 +33,6 @@ public class AipaoClinet {
         apiService = retrofit.create(ApiService.class);
     }
 
-    /**
-     * 将数字转换成字母，编码的时候不同数字对应的字母唯一
-     *
-     * @param i
-     * @return 加密处理后的字符串
-     */
-    private static String encrypt(int i) {
-        String encryptOrigin = "czplgyznba";// 任意10个不同的字符串
-        StringBuilder result = new StringBuilder();
-        char[] chars = String.valueOf(i).toCharArray();
-
-        for (char each : chars) {
-            result.append(encryptOrigin.charAt(each - '0'));
-        }
-        return result.toString();
-    }
 
     public void imeiLogin(String imeicode) throws IOException {
         System.out.println("IMEICode: \t\t" + imeicode);
@@ -60,6 +47,7 @@ public class AipaoClinet {
 
         assert info != null;
         System.out.print("正在获取个人信息: \t");
+        System.out.println(info.toString());
         gender = info.getData().getUser().getSex();
         System.out.println(info.getData().getUser().getNickName() + gender);
     }
@@ -71,12 +59,12 @@ public class AipaoClinet {
 
         if (gender.equals("男")) {
             locationmap.put("S3", "3000");
-            distance = 3000 + (int) (Math.random() * 5);
-            time = distance / 3;
+            distance = randomUtils(3000, 3008);
+            time = randomUtils(833, 1388);
         } else if (gender.equals("女")) {
             locationmap.put("S3", "2500");
-            distance = 3000 + (int) (Math.random() * 5);
-            time = distance / 3;
+            distance = randomUtils(2500, 2506);
+            time = randomUtils(708, 1500);
         }
 
         Call<runningEntity> running = apiService.startRunning(token, locationmap);
@@ -99,7 +87,7 @@ public class AipaoClinet {
         record.put("S6", "");
         record.put("S7", "1");
         record.put("S8", "czplgyznba");// 加密原字段
-        record.put("S9", encrypt(2205));// 跑步步数
+        record.put("S9", encrypt(randomUtils(1998, 2389)));// 跑步步数
 
         System.out.print("正在上传跑步记录: \t");
         Call<uploadEntity> uploadRecord = apiService.uploadRecord(token, record);
