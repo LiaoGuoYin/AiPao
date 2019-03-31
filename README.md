@@ -27,13 +27,13 @@
    - [ ] 从本地读取保存 `IMEICode` 
    - [ ] 完整的错误提示
  
-## 其他
-     **本项目基于 HTTP框架: [Retrofit2](https://square.github.io/retrofit/)**  
-     
-     **本项目核心api出自: [zyc199847](https://github.com/zyc199847/Sunny-Running) 逆向出的成型思路**
-   
+## Others
      **Author: [LiaoGuoYin](https://github.com/Biubang)**
+
+     **基于HTTP框架: [Retrofit2](https://square.github.io/retrofit/)**  
      
+     **核心API出自: [zyc199847](https://github.com/zyc199847/Sunny-Running) 逆向成果**
+   
      **License GPL v3.0**
 
 ## Warning
