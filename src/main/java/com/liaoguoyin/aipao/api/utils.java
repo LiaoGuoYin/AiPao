@@ -1,7 +1,11 @@
 package com.liaoguoyin.aipao.api;
 
 
-class utils {
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class utils {
     /**
      * 传入一个一个范围[min, max]，返回范围内的随机数
      *
@@ -28,5 +32,16 @@ class utils {
             result.append(encryptOrigin.charAt(each - '0'));
         }
         return result.toString();
+    }
+
+    /**
+     * @param s inputstring
+     * @return 返回对应的md5值
+     * @throws NoSuchAlgorithmException md5算法错误
+     */
+    public static String md5(String s) throws NoSuchAlgorithmException {
+        MessageDigest messageDigest = MessageDigest.getInstance("md5");
+        messageDigest.update(s.getBytes());
+        return new BigInteger(1, messageDigest.digest()).toString(16);
     }
 }

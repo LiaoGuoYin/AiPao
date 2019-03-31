@@ -9,7 +9,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,13 +16,14 @@ import static com.liaoguoyin.aipao.api.utils.encrypt;
 import static com.liaoguoyin.aipao.api.utils.randomUtils;
 
 public class AipaoClinet {
+    public int UserId;
+    public StringBuilder output = new StringBuilder();
     private ApiService apiService;
     private String token;
     private String runid;
     private String gender;
     private int distance;
     private int time;
-    public int UserId;
 
     public AipaoClinet() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -34,7 +34,6 @@ public class AipaoClinet {
         apiService = retrofit.create(ApiService.class);
     }
 
-
     public void imeiLogin(String imeicode) throws IOException {
         System.out.println("IMEICode: \t\t" + imeicode);
         Call<LoginEntity> dataEntityCall = apiService.imeilogin(imeicode);
@@ -44,6 +43,7 @@ public class AipaoClinet {
         token = loginEntity.getData().getToken();
         UserId = loginEntity.getData().getUserId();
         System.out.println("Login: \t" + loginEntity.toString());
+        output.append(loginEntity.toString());
     }
 
     public void getBasicInfo() throws IOException {
@@ -51,6 +51,7 @@ public class AipaoClinet {
         InfoEntity infoEntity = infoEntityCall.execute().body();
 
         System.out.println("正在获取个人信息: \t" + infoEntity.toString());
+        output.append(infoEntity.toString());
         gender = infoEntity.getData().getUser().getSex();
     }
 
@@ -70,9 +71,10 @@ public class AipaoClinet {
         }
 
         Call<runningEntity> running = apiService.startRunning(token, locationmap);
-
         runningEntity runningEntity = running.execute().body();
+
         System.out.println("获取本次跑步信息: " + runningEntity.toString());
+        output.append(runningEntity.toString());
         System.out.print("开始跑步, 取得RunId: \t");
         runid = runningEntity.getData().getRunId();
         System.out.print("本次路程: (米)" + distance);
@@ -84,8 +86,8 @@ public class AipaoClinet {
         record.put("S1", runid);// 本次跑步记录的id
         record.put("S4", encrypt(time));// 跑步时间 s
         record.put("S5", encrypt(distance));// 跑步距离 m
-        record.put("S6", "");
-        record.put("S7", "1");
+        record.put("S6", "");// 跑步关键点 形似: A0A2A1A3A0
+        record.put("S7", "1");// 本次跑步的状态 1表示成功，0、2等非1值表示失败
         record.put("S8", "czplgyznba");// 加密原字段
         record.put("S9", encrypt(randomUtils(1998, 2389)));// 跑步步数
 
