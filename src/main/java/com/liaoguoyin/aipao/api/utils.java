@@ -17,6 +17,9 @@ public class utils {
         return (int) (min + ((max - min) * Math.random()));
     }
 
+    static double randomUtils(double min, double max) {
+        return (int) (min + ((max - min) * Math.random()));
+    }
     /**
      * 将数字转换成字母，编码的时候不同数字对应的字母唯一
      *
