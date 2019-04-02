@@ -17,13 +17,14 @@ import static com.liaoguoyin.aipao.api.utils.randomUtils;
 
 public class AipaoClinet {
     public int UserId;
-    public StringBuilder output = new StringBuilder();
+    public StringBuilder output = new StringBuilder("%n");
     private ApiService apiService;
     private String token;
     private String runid;
-    private String gender;
     private int distance;
     private int time;
+    private double minSpeed;
+    private double maxSpeed;
 
     public AipaoClinet() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -37,46 +38,43 @@ public class AipaoClinet {
     public void imeiLogin(String imeicode) throws IOException {
         System.out.println("IMEICode: \t\t" + imeicode);
         Call<LoginEntity> dataEntityCall = apiService.imeilogin(imeicode);
-
         LoginEntity loginEntity = dataEntityCall.execute().body();
-        assert loginEntity != null;
+
         token = loginEntity.getData().getToken();
         UserId = loginEntity.getData().getUserId();
-        System.out.println("Login: \t" + loginEntity.toString());
         output.append(loginEntity.toString());
+        System.out.println("Login: \t" + loginEntity.toString());
     }
 
     public void getBasicInfo() throws IOException {
         Call<InfoEntity> infoEntityCall = apiService.getinfo(token);
         InfoEntity infoEntity = infoEntityCall.execute().body();
 
-        System.out.println("正在获取个人信息: \t" + infoEntity.toString());
         output.append(infoEntity.toString());
-        gender = infoEntity.getData().getUser().getSex();
+        distance = infoEntity.getData().getSchoolRun().getLengths();
+        minSpeed = infoEntity.getData().getSchoolRun().getMinSpeed();
+        maxSpeed = infoEntity.getData().getSchoolRun().getMaxSpeed();
+        System.out.println("正在获取个人信息: \t" + infoEntity.toString());
     }
 
     public void running() throws IOException {
         Map<String, String> locationmap = new HashMap<>();
         locationmap.put("S1", "40.62825");
         locationmap.put("S2", "120.79107");
+        locationmap.put("S3", String.valueOf(distance));
+        distance = randomUtils(distance, distance + 5);
+        time = (int) randomUtils(distance / maxSpeed, distance / minSpeed);
 
-        if (gender.equals("男")) {
-            locationmap.put("S3", "3000");
-            distance = randomUtils(3000, 3008);
-            time = randomUtils(833, 1388);
-        } else if (gender.equals("女")) {
-            locationmap.put("S3", "2500");
-            distance = randomUtils(2500, 2506);
-            time = randomUtils(708, 1500);
-        }
+        System.out.println("distance / maxSpeed:" + distance / maxSpeed);
+        System.out.println("distance / min:" + distance / minSpeed);
 
         Call<runningEntity> running = apiService.startRunning(token, locationmap);
         runningEntity runningEntity = running.execute().body();
 
-        System.out.println("获取本次跑步信息: " + runningEntity.toString());
         output.append(runningEntity.toString());
-        System.out.print("开始跑步, 取得RunId: \t");
         runid = runningEntity.getData().getRunId();
+        System.out.println("获取本次跑步信息: " + runningEntity.toString());
+        System.out.print("开始跑步, 取得RunId: \t");
         System.out.print("本次路程: (米)" + distance);
         System.out.println("\t用时: (秒)" + time);
     }
@@ -86,10 +84,10 @@ public class AipaoClinet {
         record.put("S1", runid);// 本次跑步记录的id
         record.put("S4", encrypt(time));// 跑步时间 s
         record.put("S5", encrypt(distance));// 跑步距离 m
-        record.put("S6", "");// 跑步关键点 形似: A0A2A1A3A0
+        record.put("S6", "A0A2A1A3A0");// 跑步关键点 形似: A0A2A1A3A0
         record.put("S7", "1");// 本次跑步的状态 1表示成功，0、2等非1值表示失败
         record.put("S8", "czplgyznba");// 加密原字段
-        record.put("S9", encrypt(randomUtils(1998, 2389)));// 跑步步数
+        record.put("S9", encrypt(randomUtils(1198, 1889)));// 跑步步数
 
         System.out.print("正在上传跑步记录: \t");
         Call<uploadEntity> uploadRecord = apiService.uploadRecord(token, record);
