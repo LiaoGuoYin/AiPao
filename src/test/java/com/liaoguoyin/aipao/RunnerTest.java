@@ -11,7 +11,7 @@ public class RunnerTest {
     public static void main(String[] args) {
         AipaoClinet clinet = new AipaoClinet();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入IMEICode: ");
+        System.out.println("lGY太强了，请输入IMEICode: ");
 
         try {
             clinet.imeiLogin(scanner.nextLine());

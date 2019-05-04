@@ -17,7 +17,7 @@ public class utils {
         return (int) (min + ((max - min) * Math.random()));
     }
 
-    static double randomUtils(double min, double max) {
+    static int randomUtils(double min, double max) {
         return (int) (min + ((max - min) * Math.random()));
     }
     /**
@@ -27,7 +27,7 @@ public class utils {
      * @return 加密处理后的字符串
      */
     static String encrypt(int i) {
-        String encryptOrigin = "czplgyznba";// 任意10个不同的字符，加密源
+        String encryptOrigin = "xfvdmyirsg";// 任意10个不同的字符，加密源(注意！！不是完全任意，需要自己抓一次包来确定)
         StringBuilder result = new StringBuilder();
         char[] chars = String.valueOf(i).toCharArray();
 

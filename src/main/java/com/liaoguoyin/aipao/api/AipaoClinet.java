@@ -17,7 +17,7 @@ import static com.liaoguoyin.aipao.api.utils.randomUtils;
 
 public class AipaoClinet {
     public int UserId;
-    public StringBuilder output = new StringBuilder("%n");
+    public StringBuilder output = new StringBuilder("\n");
     private ApiService apiService;
     private String token;
     private String runid;
@@ -63,7 +63,7 @@ public class AipaoClinet {
         locationmap.put("S2", "120.79107");
         locationmap.put("S3", String.valueOf(distance));
         distance = randomUtils(distance, distance + 5);
-        time = (int) randomUtils(distance / maxSpeed, distance / minSpeed);
+        time = randomUtils(distance / maxSpeed, distance / minSpeed);
 
         System.out.println("distance / maxSpeed:" + distance / maxSpeed);
         System.out.println("distance / min:" + distance / minSpeed);
@@ -86,7 +86,7 @@ public class AipaoClinet {
         record.put("S5", encrypt(distance));// 跑步距离 m
         record.put("S6", "A0A2A1A3A0");// 跑步关键点 形似: A0A2A1A3A0
         record.put("S7", "1");// 本次跑步的状态 1表示成功，0、2等非1值表示失败
-        record.put("S8", "czplgyznba");// 加密原字段
+        record.put("S8", "xfvdmyirsg");// 加密原字段
         record.put("S9", encrypt(randomUtils(1198, 1889)));// 跑步步数
 
         System.out.print("正在上传跑步记录: \t");
