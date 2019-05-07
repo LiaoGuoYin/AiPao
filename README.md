@@ -14,7 +14,7 @@
   
   - 下载压缩包并解压, 双击 `start.bat` (mac命令行下: `bash start.bat`)
   
-  - 看到输入提示后, 粘贴 Imeicode 即可 (每跑一次，会在本地 output.txt 生成一行记录)
+  - 看到输入提示后, 粘贴 `Imeicode` 即可 (每跑一次，会在本地 output.txt 生成一行记录)
   
      
 ## Todo
