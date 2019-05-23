@@ -5,16 +5,13 @@ import com.liaoguoyin.aipao.api.Entity.LoginEntity;
 import com.liaoguoyin.aipao.api.Entity.runningEntity;
 import com.liaoguoyin.aipao.api.Entity.uploadEntity;
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
+import retrofit2.http.*;
 
 import java.util.Map;
 
 public interface ApiService {
 
-    @GET("token/QM_Users/LoginSchool")
+    @GET("{token}/QM_Users/Login_AndroidSchool")
     Call<LoginEntity> imeilogin(@Query("IMEICode") String imeicode);
 
     @GET("{token}/QM_Users/GS")

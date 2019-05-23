@@ -5,6 +5,7 @@ import com.liaoguoyin.aipao.api.Entity.LoginEntity;
 import com.liaoguoyin.aipao.api.Entity.runningEntity;
 import com.liaoguoyin.aipao.api.Entity.uploadEntity;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,20 +26,35 @@ public class AipaoClinet {
     private int time;
     private double minSpeed;
     private double maxSpeed;
+    private Retrofit retrofitAndroid;
+    private Retrofit retrofitIOS;
 
     public AipaoClinet() {
-        Retrofit retrofit = new Retrofit.Builder()
+        retrofitAndroid = new Retrofit.Builder()
                 .baseUrl("http://client3.aipao.me/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        apiService = retrofit.create(ApiService.class);
+        retrofitIOS = new Retrofit.Builder()
+                .baseUrl("http://client4.aipao.me/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofitAndroid.create(ApiService.class);
     }
 
     public void imeiLogin(String imeicode) throws IOException {
         System.out.println("IMEICode: \t\t" + imeicode);
         Call<LoginEntity> dataEntityCall = apiService.imeilogin(imeicode);
-        LoginEntity loginEntity = dataEntityCall.execute().body();
+        Response<LoginEntity> responseLogin = dataEntityCall.execute();
+        LoginEntity loginEntity = responseLogin.body();
+
+        if (!loginEntity.isSuccess()) {
+            apiService = retrofitIOS.create(ApiService.class);
+            dataEntityCall = apiService.imeilogin(imeicode);
+            responseLogin = dataEntityCall.execute();
+            loginEntity = responseLogin.body();
+        }
 
         token = loginEntity.getData().getToken();
         UserId = loginEntity.getData().getUserId();
