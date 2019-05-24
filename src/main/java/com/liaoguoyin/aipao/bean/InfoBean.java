@@ -1,10 +1,10 @@
-package com.liaoguoyin.aipao.api.Entity;
+package com.liaoguoyin.aipao.bean;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class InfoEntity {
+public class InfoBean {
 
     /**
      * Success : true

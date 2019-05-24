@@ -1,11 +1,11 @@
-package com.liaoguoyin.aipao.api;
+package com.liaoguoyin.aipao;
 
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class utils {
+public class Utils {
     /**
      * 传入一个一个范围[min, max]，返回范围内的随机数
      *

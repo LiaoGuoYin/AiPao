@@ -1,10 +1,10 @@
-package com.liaoguoyin.aipao.api.Entity;
+package com.liaoguoyin.aipao.bean;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class runningEntity {
+public class RunningInfoBean {
 
     private boolean Success;
     private DataBean Data;

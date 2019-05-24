@@ -1,13 +1,11 @@
 package com.liaoguoyin.aipao;
 
-import com.liaoguoyin.aipao.api.AipaoClinet;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class RunnerTest {
+public class AipaoClientTest {
     public static void main(String[] args) {
         int pauseTime = 5000;
         String imeiCode;

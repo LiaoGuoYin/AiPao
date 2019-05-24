@@ -1,9 +1,10 @@
-package com.liaoguoyin.aipao.api;
+package com.liaoguoyin.aipao;
 
-import com.liaoguoyin.aipao.api.Entity.InfoEntity;
-import com.liaoguoyin.aipao.api.Entity.LoginEntity;
-import com.liaoguoyin.aipao.api.Entity.runningEntity;
-import com.liaoguoyin.aipao.api.Entity.uploadEntity;
+import com.liaoguoyin.aipao.api.ApiService;
+import com.liaoguoyin.aipao.bean.InfoBean;
+import com.liaoguoyin.aipao.bean.LoginBean;
+import com.liaoguoyin.aipao.bean.RunningInfoBean;
+import com.liaoguoyin.aipao.bean.UploadBean;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -13,8 +14,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.liaoguoyin.aipao.api.utils.encrypt;
-import static com.liaoguoyin.aipao.api.utils.randomUtils;
+import static com.liaoguoyin.aipao.Utils.encrypt;
+import static com.liaoguoyin.aipao.Utils.randomUtils;
 
 public class AipaoClinet {
     public int UserId;
@@ -45,32 +46,32 @@ public class AipaoClinet {
 
     public void imeiLogin(String imeicode) throws IOException {
         System.out.println("IMEICode: \t\t" + imeicode);
-        Call<LoginEntity> dataEntityCall = apiService.imeilogin(imeicode);
-        Response<LoginEntity> responseLogin = dataEntityCall.execute();
-        LoginEntity loginEntity = responseLogin.body();
+        Call<LoginBean> dataEntityCall = apiService.imeilogin(imeicode);
+        Response<LoginBean> responseLogin = dataEntityCall.execute();
+        LoginBean loginBean = responseLogin.body();
 
-        if (!loginEntity.isSuccess()) {
+        if (!loginBean.isSuccess()) {
             apiService = retrofitIOS.create(ApiService.class);
             dataEntityCall = apiService.imeilogin(imeicode);
             responseLogin = dataEntityCall.execute();
-            loginEntity = responseLogin.body();
+            loginBean = responseLogin.body();
         }
 
-        token = loginEntity.getData().getToken();
-        UserId = loginEntity.getData().getUserId();
-        output.append(loginEntity.toString());
-        System.out.println("Login: \t" + loginEntity.toString());
+        token = loginBean.getData().getToken();
+        UserId = loginBean.getData().getUserId();
+        output.append(loginBean.toString());
+        System.out.println("Login: \t" + loginBean.toString());
     }
 
     public void getBasicInfo() throws IOException {
-        Call<InfoEntity> infoEntityCall = apiService.getinfo(token);
-        InfoEntity infoEntity = infoEntityCall.execute().body();
+        Call<InfoBean> infoEntityCall = apiService.getinfo(token);
+        InfoBean infoBean = infoEntityCall.execute().body();
 
-        output.append(infoEntity.toString());
-        distance = infoEntity.getData().getSchoolRun().getLengths();
-        minSpeed = infoEntity.getData().getSchoolRun().getMinSpeed();
-        maxSpeed = infoEntity.getData().getSchoolRun().getMaxSpeed();
-        System.out.println("正在获取个人信息: \t" + infoEntity.toString());
+        output.append(infoBean.toString());
+        distance = infoBean.getData().getSchoolRun().getLengths();
+        minSpeed = infoBean.getData().getSchoolRun().getMinSpeed();
+        maxSpeed = infoBean.getData().getSchoolRun().getMaxSpeed();
+        System.out.println("正在获取个人信息: \t" + infoBean.toString());
     }
 
     public void running() throws IOException {
@@ -84,12 +85,12 @@ public class AipaoClinet {
         System.out.println("distance / maxSpeed:" + distance / maxSpeed);
         System.out.println("distance / min:" + distance / minSpeed);
 
-        Call<runningEntity> running = apiService.startRunning(token, locationmap);
-        runningEntity runningEntity = running.execute().body();
+        Call<RunningInfoBean> running = apiService.startRunning(token, locationmap);
+        RunningInfoBean RunningInfoBean = running.execute().body();
 
-        output.append(runningEntity.toString());
-        runid = runningEntity.getData().getRunId();
-        System.out.println("获取本次跑步信息: " + runningEntity.toString());
+        output.append(RunningInfoBean.toString());
+        runid = RunningInfoBean.getData().getRunId();
+        System.out.println("获取本次跑步信息: " + RunningInfoBean.toString());
         System.out.print("开始跑步, 取得RunId: \t");
         System.out.print("本次路程: (米)" + distance);
         System.out.println("\t用时: (秒)" + time);
@@ -106,7 +107,7 @@ public class AipaoClinet {
         record.put("S9", encrypt(randomUtils(1198, 1889)));// 跑步步数
 
         System.out.print("正在上传跑步记录: \t");
-        Call<uploadEntity> uploadRecord = apiService.uploadRecord(token, record);
+        Call<UploadBean> uploadRecord = apiService.uploadRecord(token, record);
         System.out.println(uploadRecord.execute().body().getData());
     }
 

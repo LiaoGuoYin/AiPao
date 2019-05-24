@@ -1,6 +1,6 @@
-package com.liaoguoyin.aipao.api.Entity;
+package com.liaoguoyin.aipao.bean;
 
-public class uploadEntity {
+public class UploadBean {
 
     /**
      * Success : true

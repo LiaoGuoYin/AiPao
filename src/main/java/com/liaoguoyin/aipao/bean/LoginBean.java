@@ -1,9 +1,9 @@
-package com.liaoguoyin.aipao.api.Entity;
+package com.liaoguoyin.aipao.bean;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginEntity {
+public class LoginBean {
     /**
      * Success : true
      * Data : {"Token":"8ab97c64cab149adb773c821c0cbce8f","UserId":396970,"IMEICode":"63166186f4804dceb6b860330ae2f576","AndroidVer":2.1,"AppleVer":1.24,"WinVer":1}
