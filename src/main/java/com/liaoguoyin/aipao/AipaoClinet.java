@@ -11,6 +11,7 @@ import retrofit2.Call;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.liaoguoyin.aipao.Utils.encrypt;
 import static com.liaoguoyin.aipao.Utils.randomUtils;
@@ -37,7 +38,7 @@ public class AipaoClinet {
             apiService = new RetrofitManager("http://client3.aipao.me/api/").getApiService();
             LoginBean TestResult = apiService.imeilogin(imeicode).execute().body();
 
-            if (!TestResult.isSuccess()) {
+            if (!Objects.requireNonNull(TestResult).isSuccess()) {
                 apiService = new RetrofitManager("http://client4.aipao.me/api/").getApiService();
             }
 
@@ -53,7 +54,7 @@ public class AipaoClinet {
         LoginBean loginBean = loginBeanCall.execute().body();
 
         System.out.println(loginBeanCall.request());
-        System.out.println("Login: " + loginBean.toString());
+        System.out.println("Login: " + Objects.requireNonNull(loginBean).toString());
 
         info.put("token", loginBean.getData().getToken());
         info.put("userId", loginBean.getData().getUserId());
@@ -64,7 +65,7 @@ public class AipaoClinet {
         Call<InfoBean> infoBeanCall = apiService.getinfo(info.get("token").toString());
         InfoBean infoBean = infoBeanCall.execute().body();
 
-        distance = infoBean.getData().getSchoolRun().getLengths();
+        distance = Objects.requireNonNull(infoBean).getData().getSchoolRun().getLengths();
         minSpeed = infoBean.getData().getSchoolRun().getMinSpeed();
         maxSpeed = infoBean.getData().getSchoolRun().getMaxSpeed();
 
@@ -83,7 +84,7 @@ public class AipaoClinet {
 
         Call<RunningInfoBean> running = apiService.startRunning(info.get("token").toString(), locationmap);
         RunningInfoBean RunningInfoBean = running.execute().body();
-        info.put("runid", RunningInfoBean.getData().getRunId());
+        info.put("runid", Objects.requireNonNull(RunningInfoBean).getData().getRunId());
 
         System.out.println(running.request());
         System.out.println("Getting this recorder: " + RunningInfoBean.toString());
@@ -103,7 +104,7 @@ public class AipaoClinet {
         record.put("S9", encrypt(randomUtils(1198, 1889)));// 跑步步数
 
         Call<UploadBean> uploadRecord = apiService.uploadRecord(info.get("token").toString(), record);
-        System.out.println(uploadRecord.execute().body().getData());
+        System.out.println(Objects.requireNonNull(uploadRecord.execute().body()).getData());
     }
 
 }

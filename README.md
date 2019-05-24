@@ -2,6 +2,7 @@
 
 老夫一秒一个 `阳关体育` （强行JAVA脚本）
 
+More: [阳光体育长跑的正确打开姿势](https://liaoguoyin.com/2019/05/19/Aipao.html)
 ## Usage
 
 #### 1. 获取 IMEICode
@@ -22,7 +23,7 @@
    - [x] 每操作一步，返回一定的信息
    - [ ] 异步式批量跑
    - [ ] 添加 headers 中的 `auth` 和 `sign` 字段
-   - [ ] 从本地读取保存 `IMEICode` 
+   - [x] 从本地读取保存 `IMEICode` 
    - [x] 错误提示
  
 ## Recommend Capture App
@@ -31,7 +32,7 @@
 ## Design this Project Youself
    - Fork(我是不会跑路的, 球球你给我 Star 8)后 IDEA 打开项目, 然后 import Gradle project.
  
-   - 进入 [src/test](src/test/java/com/liaoguoyin/aipao/RunnerTest.java) 目录, 点击左侧的绿色箭头运行, 在控制台输入 `IMEICode` 回车即可.
+   - 进入 [src/test](src/test/java/com/liaoguoyin/aipao/AipaoClientTest.java) 目录, 点击左侧的绿色箭头运行, 在控制台输入 `IMEICode` 回车即可.
  
    - 本项目还有 `Python` 版和 `Kotlin` 版, 请切换分支自取.
    
