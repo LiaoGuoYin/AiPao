@@ -1,14 +1,12 @@
 package com.liaoguoyin.aipao;
 
 import com.liaoguoyin.aipao.api.ApiService;
+import com.liaoguoyin.aipao.api.RetrofitManager;
 import com.liaoguoyin.aipao.bean.InfoBean;
 import com.liaoguoyin.aipao.bean.LoginBean;
 import com.liaoguoyin.aipao.bean.RunningInfoBean;
 import com.liaoguoyin.aipao.bean.UploadBean;
 import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,60 +16,61 @@ import static com.liaoguoyin.aipao.Utils.encrypt;
 import static com.liaoguoyin.aipao.Utils.randomUtils;
 
 public class AipaoClinet {
-    public int UserId;
+    private static ApiService apiService;
+
+    public Map<Object, Object> info = new HashMap<>();
     public StringBuilder output = new StringBuilder("\n");
-    private ApiService apiService;
-    private String token;
-    private String runid;
-    private int distance;
-    private int time;
-    private double minSpeed;
-    private double maxSpeed;
-    private Retrofit retrofitAndroid;
-    private Retrofit retrofitIOS;
 
-    public AipaoClinet() {
-        retrofitAndroid = new Retrofit.Builder()
-                .baseUrl("http://client3.aipao.me/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    private String imeicode;
+    private int distance, time;
+    private double minSpeed, maxSpeed;
 
-        retrofitIOS = new Retrofit.Builder()
-                .baseUrl("http://client4.aipao.me/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiService = retrofitAndroid.create(ApiService.class);
+    public AipaoClinet(String imeicode) {
+        super();
+        this.imeicode = imeicode;
+        selectAPI(imeicode);
     }
 
-    public void imeiLogin(String imeicode) throws IOException {
-        System.out.println("IMEICode: \t\t" + imeicode);
-        Call<LoginBean> dataEntityCall = apiService.imeilogin(imeicode);
-        Response<LoginBean> responseLogin = dataEntityCall.execute();
-        LoginBean loginBean = responseLogin.body();
+    private static void selectAPI(String imeicode) {
 
-        if (!loginBean.isSuccess()) {
-            apiService = retrofitIOS.create(ApiService.class);
-            dataEntityCall = apiService.imeilogin(imeicode);
-            responseLogin = dataEntityCall.execute();
-            loginBean = responseLogin.body();
+        try {
+            apiService = new RetrofitManager("http://client3.aipao.me/api/").getApiService();
+            LoginBean TestResult = apiService.imeilogin(imeicode).execute().body();
+
+            if (!TestResult.isSuccess()) {
+                apiService = new RetrofitManager("http://client4.aipao.me/api/").getApiService();
+            }
+
+        } catch (Exception e) {
+            System.out.println("IMEICode has overdue");
         }
 
-        token = loginBean.getData().getToken();
-        UserId = loginBean.getData().getUserId();
-        output.append(loginBean.toString());
-        System.out.println("Login: \t" + loginBean.toString());
+    }
+
+    public void login() throws IOException {
+        System.out.format("IMEICode: %s%n", imeicode);
+        Call<LoginBean> loginBeanCall = apiService.imeilogin(imeicode);
+        LoginBean loginBean = loginBeanCall.execute().body();
+
+        System.out.println(loginBeanCall.request());
+        System.out.println("Login: " + loginBean.toString());
+
+        info.put("token", loginBean.getData().getToken());
+        info.put("userId", loginBean.getData().getUserId());
+        output.append(imeicode).append("----").append(loginBean.toString());
     }
 
     public void getBasicInfo() throws IOException {
-        Call<InfoBean> infoEntityCall = apiService.getinfo(token);
-        InfoBean infoBean = infoEntityCall.execute().body();
+        Call<InfoBean> infoBeanCall = apiService.getinfo(info.get("token").toString());
+        InfoBean infoBean = infoBeanCall.execute().body();
 
-        output.append(infoBean.toString());
         distance = infoBean.getData().getSchoolRun().getLengths();
         minSpeed = infoBean.getData().getSchoolRun().getMinSpeed();
         maxSpeed = infoBean.getData().getSchoolRun().getMaxSpeed();
-        System.out.println("正在获取个人信息: \t" + infoBean.toString());
+
+        System.out.println(infoBeanCall.request());
+        System.out.println("Getting the basic infomations: \t" + infoBean.toString());
+        output.append(infoBean.toString());
     }
 
     public void running() throws IOException {
@@ -82,23 +81,20 @@ public class AipaoClinet {
         distance = randomUtils(distance, distance + 5);
         time = randomUtils(distance / maxSpeed, distance / minSpeed);
 
-        System.out.println("distance / maxSpeed:" + distance / maxSpeed);
-        System.out.println("distance / min:" + distance / minSpeed);
-
-        Call<RunningInfoBean> running = apiService.startRunning(token, locationmap);
+        Call<RunningInfoBean> running = apiService.startRunning(info.get("token").toString(), locationmap);
         RunningInfoBean RunningInfoBean = running.execute().body();
+        info.put("runid", RunningInfoBean.getData().getRunId());
 
+        System.out.println(running.request());
+        System.out.println("Getting this recorder: " + RunningInfoBean.toString());
+        System.out.format("Time Scope: [%.1f, %.1f]", distance / maxSpeed, distance / minSpeed);
+        System.out.format("%nRunning Distance: %s(米), Cost Time: %s(秒)%n", distance, time);
         output.append(RunningInfoBean.toString());
-        runid = RunningInfoBean.getData().getRunId();
-        System.out.println("获取本次跑步信息: " + RunningInfoBean.toString());
-        System.out.print("开始跑步, 取得RunId: \t");
-        System.out.print("本次路程: (米)" + distance);
-        System.out.println("\t用时: (秒)" + time);
     }
 
     public void uploadRecord() throws IOException {
         Map<String, String> record = new HashMap<>();
-        record.put("S1", runid);// 本次跑步记录的id
+        record.put("S1", info.get("runid").toString());// 本次跑步记录的id
         record.put("S4", encrypt(time));// 跑步时间 s
         record.put("S5", encrypt(distance));// 跑步距离 m
         record.put("S6", "A0A2A1A3A0");// 跑步关键点 形似: A0A2A1A3A0
@@ -106,8 +102,7 @@ public class AipaoClinet {
         record.put("S8", "xfvdmyirsg");// 加密原字段
         record.put("S9", encrypt(randomUtils(1198, 1889)));// 跑步步数
 
-        System.out.print("正在上传跑步记录: \t");
-        Call<UploadBean> uploadRecord = apiService.uploadRecord(token, record);
+        Call<UploadBean> uploadRecord = apiService.uploadRecord(info.get("token").toString(), record);
         System.out.println(uploadRecord.execute().body().getData());
     }
 

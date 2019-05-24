@@ -38,7 +38,7 @@ public class LoginBean {
         Map<String, Object> map = new HashMap<>();
         map.put("Token", this.getData().Token);
         map.put("UserId", this.getData().UserId);
-        map.put("Login状态", this.Success);
+        map.put("Login Status", this.Success);
         return map.toString();
     }
 

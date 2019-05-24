@@ -5,7 +5,10 @@ import com.liaoguoyin.aipao.bean.LoginBean;
 import com.liaoguoyin.aipao.bean.RunningInfoBean;
 import com.liaoguoyin.aipao.bean.UploadBean;
 import retrofit2.Call;
-import retrofit2.http.*;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 import java.util.Map;
 
