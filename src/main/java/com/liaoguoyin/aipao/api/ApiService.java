@@ -14,8 +14,8 @@ import java.util.Map;
 
 public interface ApiService {
 
-    @GET("{token}/QM_Users/Login_AndroidSchool")
-    Call<LoginBean> imeilogin(@Query("IMEICode") String imeicode);
+    @GET("{token}/QM_Users/{uri}")
+    Call<LoginBean> imeilogin(@Path("uri") String uri, @Query("IMEICode") String imeicode);
 
     @GET("{token}/QM_Users/GS")
     Call<InfoBean> getinfo(@Path("token") String token);

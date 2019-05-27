@@ -36,7 +36,7 @@ public class AipaoClinet {
 
         try {
             apiService = new RetrofitManager("http://client3.aipao.me/api/").getApiService();
-            LoginBean TestResult = apiService.imeilogin(imeicode).execute().body();
+            LoginBean TestResult = apiService.imeilogin("Login_AndroidSchool", imeicode).execute().body();
 
             if (!Objects.requireNonNull(TestResult).isSuccess()) {
                 apiService = new RetrofitManager("http://client4.aipao.me/api/").getApiService();
@@ -50,7 +50,7 @@ public class AipaoClinet {
 
     public void login() throws IOException {
         System.out.format("IMEICode: %s%n", imeicode);
-        Call<LoginBean> loginBeanCall = apiService.imeilogin(imeicode);
+        Call<LoginBean> loginBeanCall = apiService.imeilogin("LoginSchool", imeicode);
         LoginBean loginBean = loginBeanCall.execute().body();
 
         System.out.println(loginBeanCall.request());
