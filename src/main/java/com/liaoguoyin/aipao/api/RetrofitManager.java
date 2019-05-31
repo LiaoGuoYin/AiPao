@@ -5,9 +5,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitManager {
     private ApiService apiService;
+    private Retrofit retrofit;
 
     public RetrofitManager(String ROOT_URL) {
-        Retrofit retrofit = new Retrofit.Builder()
+        super();
+        retrofit = new Retrofit.Builder()
                 .baseUrl(ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -17,5 +19,9 @@ public class RetrofitManager {
 
     public ApiService getApiService() {
         return apiService;
+    }
+
+    public Retrofit getRetrofit() {
+        return retrofit;
     }
 }

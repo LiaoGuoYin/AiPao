@@ -18,6 +18,7 @@ import static com.liaoguoyin.aipao.Utils.randomUtils;
 
 public class AipaoClinet {
     private static ApiService apiService;
+    private static RetrofitManager retrofitManager;
 
     public Map<Object, Object> info = new HashMap<>();
     public StringBuilder output = new StringBuilder("\n");
@@ -35,11 +36,13 @@ public class AipaoClinet {
     private static void selectAPI(String imeicode) {
 
         try {
-            apiService = new RetrofitManager("http://client3.aipao.me/api/").getApiService();
+            retrofitManager = new RetrofitManager("http://client3.aipao.me/api/");
+            apiService = retrofitManager.getApiService();
             LoginBean TestResult = apiService.imeilogin("Login_AndroidSchool", imeicode).execute().body();
 
             if (!Objects.requireNonNull(TestResult).isSuccess()) {
-                apiService = new RetrofitManager("http://client4.aipao.me/api/").getApiService();
+                retrofitManager = new RetrofitManager("http://client4.aipao.me/api/");
+                apiService = retrofitManager.getApiService();
             }
 
         } catch (Exception e) {
@@ -49,8 +52,14 @@ public class AipaoClinet {
     }
 
     public void login() throws IOException {
-        System.out.format("IMEICode: %s%n", imeicode);
-        Call<LoginBean> loginBeanCall = apiService.imeilogin("LoginSchool", imeicode);
+        String apiUrl = retrofitManager.getRetrofit().baseUrl().toString();
+        Call<LoginBean> loginBeanCall;
+
+        if (apiUrl.equals("http://client4.aipao.me/api/")) {
+            loginBeanCall = apiService.imeilogin("LoginSchool", imeicode);
+        } else {
+            loginBeanCall = apiService.imeilogin("Login_AndroidSchool", imeicode);
+        }
         LoginBean loginBean = loginBeanCall.execute().body();
 
         System.out.println(loginBeanCall.request());

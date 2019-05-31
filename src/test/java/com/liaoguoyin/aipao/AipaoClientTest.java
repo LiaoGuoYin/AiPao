@@ -37,8 +37,10 @@ public class AipaoClientTest {
 
         } catch (IOException e) {
             System.out.println("输入输出异常，请检查脚本是否有读写权限");
+            e.printStackTrace();
         } catch (NullPointerException e) {
             System.out.println(imeiCode + " 空指针异常，可能是IMEICode失效");
+            e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
