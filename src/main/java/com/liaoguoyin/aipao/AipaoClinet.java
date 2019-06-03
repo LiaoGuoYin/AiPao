@@ -21,7 +21,7 @@ public class AipaoClinet {
     private static RetrofitManager retrofitManager;
 
     public Map<Object, Object> info = new HashMap<>();
-    public StringBuilder output = new StringBuilder("\n");
+    public StringBuilder output = new StringBuilder();
 
     private String imeicode;
     private int distance, time;
@@ -67,7 +67,7 @@ public class AipaoClinet {
 
         info.put("token", loginBean.getData().getToken());
         info.put("userId", loginBean.getData().getUserId());
-        output.append(imeicode).append("----").append(loginBean.toString());
+        output.append(loginBean.toString());
     }
 
     public void getBasicInfo() throws IOException {
@@ -80,6 +80,7 @@ public class AipaoClinet {
 
         System.out.println(infoBeanCall.request());
         System.out.println("Getting the basic infomations: \t" + infoBean.toString());
+        output = new StringBuilder();
         output.append(infoBean.toString());
     }
 
@@ -99,6 +100,7 @@ public class AipaoClinet {
         System.out.println("Getting this recorder: " + RunningInfoBean.toString());
         System.out.format("Time Scope: [%.1f, %.1f]", distance / maxSpeed, distance / minSpeed);
         System.out.format("%nRunning Distance: %s(米), Cost Time: %s(秒)%n", distance, time);
+        output = new StringBuilder();
         output.append(RunningInfoBean.toString());
     }
 
