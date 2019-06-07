@@ -1,8 +1,14 @@
 # 阳光体育paopaopao
 
+**更新：IOS 抓的 IMEICode 接口改了，只能安卓抓**
+
 老夫一秒一个 `阳关体育` （强行JAVA脚本）
 
 More: [阳光体育长跑的正确打开姿势](https://liaoguoyin.com/2019/05/19/Aipao.html)
+
+## Preview
+![Aipao - UI](AipaoTest.gif)
+
 ## Usage
 
 #### 1. 获取 IMEICode
@@ -17,24 +23,27 @@ More: [阳光体育长跑的正确打开姿势](https://liaoguoyin.com/2019/05/1
   
   - 看到输入提示后, 粘贴 `Imeicode` 即可 (每跑一次，会在本地 output.txt 生成一行记录)
   
-     
 ## Todo
-   - [x] 判断性别, 随机生成对应的路程和时间
-   - [x] 每操作一步，返回一定的信息
-   - [ ] 异步式批量跑
-   - [ ] 添加 headers 中的 `auth` 和 `sign` 字段
-   - [x] 从本地读取保存 `IMEICode` 
+   - [x] 判断性别, 随机生成相应的时间、路程
+   - [x] 每操作一步，返回提示
    - [x] 错误提示
+   - [X] UI
+   - [ ] 批量
+   - [ ] 请求中添加加密 headers
  
 ## Recommend Capture App
-   IOS: [Stream](https://itunes.apple.com/cn/app/stream/id1312141691?mt=8&ct=appshare-cn) Android: [Packet Capture](https://play.google.com/store/apps/details?id=app.greyshirts.sslcapture)
- 
-## Design this Project Youself
-   - Fork(我是不会跑路的, 球球你给我 Star 8)后 IDEA 打开项目, 然后 import Gradle project.
+   IOS: [Stream](https://itunes.apple.com/cn/app/stream/id1312141691?mt=8&ct=appshare-cn)
+   
+   Android: [Packet Capture](https://liaoguoyin.com/usr/uploads/2019/05/3703074831.apk)
+   
+## Design it by Youself
+   - Star 本项目（球球你给我 Star 8）
+   
+   - 下载后 IDEA 打开项目, 然后 import Gradle project.
  
    - 进入 [src/test](src/test/java/com/liaoguoyin/aipao/AipaoClientTest.java) 目录, 点击左侧的绿色箭头运行, 在控制台输入 `IMEICode` 回车即可.
  
-   - 本项目还有 `Python` 版和 `Kotlin` 版, 请切换分支自取.
+   - （本项目还有 `Python` 版和 `Kotlin` 版, 请切换分支自取.）
    
 ## Other
      **Author: [LiaoGuoYin](https://github.com/Biubang)**
