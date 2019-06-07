@@ -45,7 +45,7 @@ public class AipaoClinet {
                 apiService = retrofitManager.getApiService();
             }
 
-        } catch (Exception e) {
+        }catch (Exception e) {
             System.out.println("IMEICode has overdue");
         }
 
@@ -63,11 +63,10 @@ public class AipaoClinet {
         LoginBean loginBean = loginBeanCall.execute().body();
 
         System.out.println(loginBeanCall.request());
-        System.out.println("Login: " + Objects.requireNonNull(loginBean).toString());
-
         info.put("token", loginBean.getData().getToken());
         info.put("userId", loginBean.getData().getUserId());
-        output.append(loginBean.toString());
+        output.append("Login: ").append(loginBean.toString());
+        System.out.println(output.toString());
     }
 
     public void getBasicInfo() throws IOException {
@@ -79,9 +78,9 @@ public class AipaoClinet {
         maxSpeed = infoBean.getData().getSchoolRun().getMaxSpeed();
 
         System.out.println(infoBeanCall.request());
-        System.out.println("Getting the basic infomations: \t" + infoBean.toString());
         output = new StringBuilder();
         output.append(infoBean.toString());
+        System.out.println(output.toString());
     }
 
     public void running() throws IOException {
@@ -97,11 +96,10 @@ public class AipaoClinet {
         info.put("runid", Objects.requireNonNull(RunningInfoBean).getData().getRunId());
 
         System.out.println(running.request());
-        System.out.println("Getting this recorder: " + RunningInfoBean.toString());
-        System.out.format("Time Scope: [%.1f, %.1f]", distance / maxSpeed, distance / minSpeed);
-        System.out.format("%nRunning Distance: %s(米), Cost Time: %s(秒)%n", distance, time);
         output = new StringBuilder();
-        output.append(RunningInfoBean.toString());
+        output.append(String.format("Time Scope: [%.1f, %.1f]", distance / maxSpeed, distance / minSpeed))
+                .append(String.format("%nRunning Distance: %s(米), Cost Time: %s(秒)%n", distance, time));
+        System.out.println(output.toString());
     }
 
     public void uploadRecord() throws IOException {
@@ -112,9 +110,10 @@ public class AipaoClinet {
         record.put("S6", "A0A2A1A3A0");// 跑步关键点 形似: A0A2A1A3A0
         record.put("S7", "1");// 本次跑步的状态 1表示成功，0、2等非1值表示失败
         record.put("S8", "xfvdmyirsg");// 加密原字段
-        record.put("S9", encrypt(randomUtils(1198, 1889)));// 跑步步数
+        record.put("S9", encrypt(randomUtils(1111, 1888)));// 跑步步数
 
         Call<UploadBean> uploadRecord = apiService.uploadRecord(info.get("token").toString(), record);
+        System.out.println(info.toString());
         System.out.println(Objects.requireNonNull(uploadRecord.execute().body()).getData());
     }
 
