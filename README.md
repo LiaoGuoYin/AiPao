@@ -7,7 +7,10 @@
 More: [阳光体育长跑的正确打开姿势](https://liaoguoyin.com/2019/05/19/Aipao.html)
 
 ## Preview
-![Aipao - UI](https://liaoguoyin.com/usr/uploads/2019/06/982159388.gif)
+
+![Aipao - UI](AipaoTest.gif)
+
+![Aipao - final version](finalTest.gif)
 
 ## Usage
 
