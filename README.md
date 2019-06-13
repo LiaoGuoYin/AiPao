@@ -1,13 +1,13 @@
 # 阳光体育paopaopao
 
-**更新：IOS 抓的 IMEICode 接口改了，只能安卓抓**
+**注意：IOS 抓 IMEICode 接口改了，只能安卓抓**
 
 老夫一秒一个 `阳关体育` （强行JAVA脚本）
 
 More: [阳光体育长跑的正确打开姿势](https://liaoguoyin.com/2019/05/19/Aipao.html)
 
 ## Preview
-![Aipao - UI](AipaoTest.gif)
+![Aipao - UI](https://liaoguoyin.com/usr/uploads/2019/06/982159388.gif)
 
 ## Usage
 
@@ -28,11 +28,11 @@ More: [阳光体育长跑的正确打开姿势](https://liaoguoyin.com/2019/05/1
    - [x] 每操作一步，返回提示
    - [x] 错误提示
    - [X] UI
-   - [ ] 批量
+   - [x] 批量
    - [ ] 请求中添加加密 headers
  
 ## Recommend Capture App
-   IOS: [Stream](https://itunes.apple.com/cn/app/stream/id1312141691?mt=8&ct=appshare-cn)
+   ~~IOS: [Stream](https://itunes.apple.com/cn/app/stream/id1312141691?mt=8&ct=appshare-cn)~~
    
    Android: [Packet Capture](https://liaoguoyin.com/usr/uploads/2019/05/3703074831.apk)
    
