@@ -65,7 +65,8 @@ public class AipaoClinet {
         System.out.println(loginBeanCall.request());
         info.put("token", loginBean.getData().getToken());
         info.put("userId", loginBean.getData().getUserId());
-        output.append("Login: ").append(loginBean.toString());
+        output.append(imeicode);
+        output.append(", Login: ").append(loginBean.toString());
         System.out.println(output.toString());
     }
 
@@ -89,14 +90,14 @@ public class AipaoClinet {
         locationmap.put("S2", "120.79107");
         locationmap.put("S3", String.valueOf(distance));
         distance = randomUtils(distance, distance + 5);
-        time = randomUtils(distance / maxSpeed, distance / minSpeed);
+        time = randomUtils(distance / ((maxSpeed + minSpeed) / 2), distance / minSpeed);
 
         Call<RunningInfoBean> running = apiService.startRunning(info.get("token").toString(), locationmap);
         RunningInfoBean RunningInfoBean = running.execute().body();
         info.put("runid", Objects.requireNonNull(RunningInfoBean).getData().getRunId());
 
         System.out.println(running.request());
-        output = new StringBuilder();
+//        output = new StringBuilder();
         output.append(String.format("Time Scope: [%.1f, %.1f]", distance / maxSpeed, distance / minSpeed))
                 .append(String.format("%nRunning Distance: %s(米), Cost Time: %s(秒)%n", distance, time));
         System.out.println(output.toString());

@@ -156,7 +156,7 @@ public class InfoBean {
             private String SchoolId;
             private String SchoolName;
             private double MinSpeed;
-            private int MaxSpeed;
+            private double MaxSpeed;
             private int Lengths;
 
             public String getSex() {
@@ -191,7 +191,7 @@ public class InfoBean {
                 this.MinSpeed = MinSpeed;
             }
 
-            public int getMaxSpeed() {
+            public double getMaxSpeed() {
                 return MaxSpeed;
             }
 
