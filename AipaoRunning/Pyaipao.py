@@ -32,27 +32,30 @@ class Aipaoer(object):
 
     def check_imeicode(self):
         IMEICode = self.IMEICode
-        url = "http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool"
-        rsp = requests.get(url, params={"IMEICode": IMEICode})
-        if rsp.json()["Success"]:
-            okJson = rsp.json()
-            self.token = okJson["Data"]["Token"]
-            self.userId = okJson["Data"]["UserId"]
-        else:
-            print("IMEICode 失效!")
+        url = "http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool={IMEICode}".format(
+            IMEICode=IMEICode)
+        rsp = requests.get(url)
+        try:
+            if rsp.json()["Success"]:
+                okJson = rsp.json()
+                self.token = okJson["Data"]["Token"]
+                self.userId = okJson["Data"]["UserId"]
+        except KeyError:
+            print("IMEICode 失效")
 
     def get_info(self):
         token = self.token
         url = "http://client3.aipao.me/api/{token}/QM_Users/GS".format(token=token)
         rsp = requests.get(url)
-        if rsp.json()["Success"]:
-            okJson = rsp.json()
-            self.userName = okJson["Data"]["User"]["NickName"]
-            self.schoolName = okJson["Data"]["SchoolRun"]["SchoolName"]
-            self.minSpeed = okJson["Data"]["SchoolRun"]["MinSpeed"]
-            self.maxSpeed = okJson["Data"]["SchoolRun"]["MaxSpeed"]
-            self.distance = okJson["Data"]["SchoolRun"]["Lengths"]
-        else:
+        try:
+            if rsp.json()["Success"]:
+                okJson = rsp.json()
+                self.userName = okJson["Data"]["User"]["NickName"]
+                self.schoolName = okJson["Data"]["SchoolRun"]["SchoolName"]
+                self.minSpeed = okJson["Data"]["SchoolRun"]["MinSpeed"]
+                self.maxSpeed = okJson["Data"]["SchoolRun"]["MaxSpeed"]
+                self.distance = okJson["Data"]["SchoolRun"]["Lengths"]
+        except KeyError:
             print("Unknown error in get_info")
 
     def get_runId(self):
@@ -61,9 +64,10 @@ class Aipaoer(object):
         url = "http://client3.aipao.me/api/{token}/QM_Runs/SRS?S1=40.62828&S2=120.79108&S3={distance}" \
             .format(token=token, distance=distance)
         rsp = requests.get(url)
-        if rsp.json()["Success"]:
-            self.runId = rsp.json()["Data"]["RunId"]
-        else:
+        try:
+            if rsp.json()["Success"]:
+                self.runId = rsp.json()["Data"]["RunId"]
+        except KeyError:
             print("Unknown error in get_runId")
 
     def upload_record(self):
@@ -71,7 +75,7 @@ class Aipaoer(object):
         my_distance = self.distance + randint(1, 5)
         my_costTime = int(my_distance // my_speed)
         my_step = randint(1555, 2222)
-        print(my_speed, my_distance, my_costTime, my_step)
+        # print(my_speed, my_distance, my_costTime, my_step)
         myParams = {
             "token": self.token,
             "runId": self.runId,
@@ -81,14 +85,15 @@ class Aipaoer(object):
         url = "http://client3.aipao.me/api/{token}/QM_Runs/ES?" \
               "S1={runId}&S4={costTime}&S5={distance}&S6=A0A2A1A3A0&S7=1&S8=xfvdmyirsg&S9={step}".format(**myParams)
         rsp = requests.get(url)
-        if rsp.json()["Success"]:
-            print("ok!")
-        else:
-            print("Unknown error in upload_record")
+        try:
+            if rsp.json()["Success"]:
+                print("成功!")
+        except KeyError:
+            print("失败")
 
 
 def main():
-    aipaoer = Aipaoer("63e517d27b84466ea68ccec9924cd86f")
+    aipaoer = Aipaoer("63e517d27b84466ea28ccec9924cd86f")
     aipaoer.check_imeicode()
     aipaoer.get_info()
     aipaoer.get_runId()
