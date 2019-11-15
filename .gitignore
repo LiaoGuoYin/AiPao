@@ -109,3 +109,7 @@ venv.bak/
 gradle/
 out/
 src/
+
+# text
+output.txt
+ok.txt
