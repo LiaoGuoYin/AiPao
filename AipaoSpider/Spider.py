@@ -1,27 +1,7 @@
 import requests
 
-
-class Aipaoer(object):
-
-    def __init__(self, userId):
-        self.userId = userId
-        self.nickName = ""
-        self.sex = "Unknown"
-        self.schoolId = "Unknown"
-        self.okRecords = []
-        self.errorRecords = []
-
-    def clear(self):
-        self.userId = ""
-        self.nickName = ""
-        self.sex = "Unknown"
-        self.schoolId = "Unknown"
-        self.okRecords = []
-        self.errorRecords = []
-
-    def __str__(self):
-        return str(self.__dict__).replace("\'", "\"") + "\n"
-
+from AipaoSpider import DBManager
+from AipaoSpider.ModelsAipao import Aipaoer
 
 INFO_URL = "http://sportsapp.aipao.me/MyResults.ashx"
 
@@ -52,7 +32,8 @@ class AipaoSpider(object):
 
     def write_db(self):
         # Mysql Mode
-        Aipao_db.insert_db(aipaoer_dict=self.aipaoer.__dict__)
+        DBManager.insert_db(aipaoer_dict=self.aipaoer.__dict__)
+
         # Local TXT Mode
         # with open("ok.txt", "a+") as fp:
         #     fp.writelines(self.aipaoer.__str__())
