@@ -32,7 +32,7 @@ class Aipaoer(object):
 
     def check_imeicode(self):
         IMEICode = self.IMEICode
-        url = "http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool={IMEICode}".format(
+        url = "http://client3.aipao.me/api/%7Btoken%7D/QM_Users/Login_AndroidSchool?IMEICode={IMEICode}".format(
             IMEICode=IMEICode)
         rsp = requests.get(url)
         try:
@@ -75,7 +75,7 @@ class Aipaoer(object):
         my_distance = self.distance + randint(1, 5)
         my_costTime = int(my_distance // my_speed)
         my_step = randint(1555, 2222)
-        # print(my_speed, my_distance, my_costTime, my_step)
+        print(my_speed, my_distance, my_costTime, my_step)
         myParams = {
             "token": self.token,
             "runId": self.runId,
@@ -93,12 +93,21 @@ class Aipaoer(object):
 
 
 def main():
-    aipaoer = Aipaoer("63e517d27b84466ea28ccec9924cd86f")
-    aipaoer.check_imeicode()
-    aipaoer.get_info()
-    aipaoer.get_runId()
-    aipaoer.upload_record()
-    pretty_print(str(aipaoer))
+    imeicodes = []
+    with open("IMEICode.txt", "r") as fp:
+        IMEICodes = fp.readlines()
+        for IMEICode in IMEICodes:
+            imeicodes.append(IMEICode[:32])
+    fp.close()
+    print("读入 IMEICode完成，共 {}".format(len(IMEICodes)))
+    print(imeicodes)
+
+    # aipaoer = Aipaoer("9b6f828bc1d644aabe8f42f46e56d754")
+    # aipaoer.check_imeicode()
+    # aipaoer.get_info()
+    # aipaoer.get_runId()
+    # aipaoer.upload_record()
+    # pretty_print(str(aipaoer))
 
 
 if __name__ == "__main__":
